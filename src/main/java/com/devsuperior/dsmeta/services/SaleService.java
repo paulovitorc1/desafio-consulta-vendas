@@ -1,6 +1,7 @@
 package com.devsuperior.dsmeta.services;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dsmeta.dto.SaleMinDTO;
 import com.devsuperior.dsmeta.dto.SaleMinDTOProjection;
+import com.devsuperior.dsmeta.dto.SaleSumaryDTO;
 import com.devsuperior.dsmeta.repositories.SaleRepository;
 
 @Service
@@ -39,4 +41,10 @@ public class SaleService {
 
 		return dtoPage;
 	}
+
+	@Transactional
+	public List<SaleSumaryDTO> getSalesSumary(LocalDate initialDate, LocalDate endDate) {
+		return saleRepository.getSalesSummaryBySeller(initialDate, endDate);
+	}
+
 }
